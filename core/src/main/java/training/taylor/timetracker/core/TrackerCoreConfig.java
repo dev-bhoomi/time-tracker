@@ -1,22 +1,22 @@
 package training.taylor.timetracker.core;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import training.taylor.timetracker.core.dao.TimeEntry;
 
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Jason on 6/19/2015.
- */
-@Configuration
-@ComponentScan("training.taylor.timetracker.core")
-public class TrackerCoreConfig {
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-    @Bean(name = "timesheet")
-    public List<TimeEntry> timeEntries() {
-        return new ArrayList<>();
+@SpringBootTest // This loads the application context
+public class TrackerTest {
+
+    @Autowired
+    private List<TimeEntry> timesheet;
+
+    @Test
+    public void testAdd() {
+        assertNotNull(timesheet, "The timesheet bean should not be null");
     }
 }
